@@ -8,7 +8,7 @@ from fabric.api import env, local, put, run
 from datetime import datetime
 from os.path import exists, isdir
 
-env.hosts = ['52.207.249.183', '54.234.14.219']
+env.hosts = ['3.89.161.158', '54.146.170.199']
 
 
 def local_clean(number=0):
