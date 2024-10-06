@@ -2,12 +2,14 @@
 """
 Fabric script based on the file 2-do_deploy_web_static.py that creates and
 distributes an archive to the web servers
+
+execute: fab -f 3-deploy_web_static.py deploy -i ~/.ssh/id_rsa -u ubuntu
 """
 
 from fabric.api import env, local, put, run
 from datetime import datetime
 from os.path import exists, isdir
-env.hosts = ['52.207.249.183', '54.234.14.219']
+env.hosts = ['3.89.161.158', '54.146.170.199']
 
 
 def do_pack():
@@ -19,7 +21,7 @@ def do_pack():
         file_name = "versions/web_static_{}.tgz".format(date)
         local("tar -cvzf {} web_static".format(file_name))
         return file_name
-    except BaseException:
+    except:
         return None
 
 
@@ -40,7 +42,7 @@ def do_deploy(archive_path):
         run('rm -rf /data/web_static/current')
         run('ln -s {}{}/ /data/web_static/current'.format(path, no_ext))
         return True
-    except BaseException:
+    except:
         return False
 
 
